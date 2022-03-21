@@ -117,11 +117,11 @@ impl Client {
     #[allow(dead_code)]
     fn count_closed(&self) -> usize {
         let mut res: usize = 0;
-        for connection in &self.connections {
-            if let Connection::Closed = connection.1 {
+        self.connections.iter().for_each(|con| {
+            if let Connection::Closed = con.1 {
                 res += 1
             }
-        }
+        });
         res
     }
 }
